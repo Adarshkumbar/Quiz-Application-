@@ -1,16 +1,23 @@
 #include <stdlib.h>
 #include <iostream>
 //#include "stdafx.h"
-
+#include "Authentication.cpp"
 #include "User.cpp"
 #include<iostream>
-#include "mySqlConnection.cpp"
+#include "mySqlConnection.h"
 using namespace std;
 
 int main()
 {
-	Connection();
+	//Connection();
 	User obj("Adarsh", "pass");
+
+	Authentication auth;
+	auth.Login(1); // for user
 	obj.getUser();
+
+	/*string name = "adie";
+	string pass = "pass";
+	addToDB(name, pass);*/
 	return 0;
 }

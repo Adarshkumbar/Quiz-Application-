@@ -1,15 +1,12 @@
 ﻿  Authentication.cpp
-  Question.cpp
-  Quiz.cpp
-C:\QuizApplication\QuizApp\QuizApp\Question.cpp(11,73): error C2086: 'std::string op1': redefinition
-C:\QuizApplication\QuizApp\QuizApp\Question.cpp(11,78): error C2059: syntax error: ')'
-C:\QuizApplication\QuizApp\QuizApp\Question.cpp(11,80): error C2143: syntax error: missing ')' before '{'
-  QuizAdmin.cpp
+C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.h(4,13): error C2129: static function 'void addToDB(std::string &,std::string &)' declared but not defined
+  (compiling source file 'Authentication.cpp')
+  C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.h(4,13):
+  see declaration of 'addToDB'
+  
   QuizMain.cpp
-C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.cpp(21,26): warning C4101: 'pstmt': unreferenced local variable
+C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.h(4,13): error C2129: static function 'void addToDB(std::string &,std::string &)' declared but not defined
   (compiling source file 'QuizMain.cpp')
+  C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.h(4,13):
+  see declaration of 'addToDB'
   
-C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.cpp(20,18): warning C4101: 'stmt': unreferenced local variable
-  (compiling source file 'QuizMain.cpp')
-  
-  User.cpp

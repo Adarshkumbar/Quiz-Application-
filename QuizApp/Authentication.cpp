@@ -1,6 +1,9 @@
 #pragma once
 #include<iostream>
 #include <string>
+#include "mySqlConnection.h"
+#include"User.cpp"
+
 using namespace std;
 
 /// <summary>
@@ -15,6 +18,11 @@ public:
 	void Login(int choice) {
 		if (choice == 1) {  // user
 			 // login ( get data from DB ) for  user
+			User user("adie" , "pass");
+			string name = "adie";
+			string pass = "pass";
+			cout << " name : " << name << " \npass : " << pass;
+			addToDB(name, pass);
 		}
 		else {						// Quiz Admin
 			// login ( get data from DB )for  QuizAdmin

@@ -139,6 +139,10 @@
     <ClCompile Include="mySqlConnection.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Authentication.h" />
+    <ClInclude Include="mySqlConnection.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
