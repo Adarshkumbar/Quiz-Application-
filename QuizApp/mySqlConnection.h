@@ -1,4 +1,10 @@
-#pragma once
+
+#ifndef MYSQLCONNECTION_H
+#define MYSQLCONNECTION_H
+
 #include<iostream>
 using namespace std;
-static void addToDB(string& name, string& pass);
+void addToDB(string arr[]);
+bool getFromDB(string arr[]);
+#endif // MYSQLCONNECTION_H
+

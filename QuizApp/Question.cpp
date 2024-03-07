@@ -13,16 +13,30 @@ class Question
 	int quizId;
 
 public:
-	Question(string question , string op1 , string op2, string op3, string op4, char ans, int quizId ) {
-		this->question = question;
-		this->op1 = op1;
-		this->op2 = op2;
-		this->op3 = op3;
-		this->op4 = op4;
-		this->ans = ans;
-		this->quizId = quizId;
-	}
+		void createQuestion() {  // Store all aspects in Db
+			cout << "\nEnter Question :";
+			cin >> this->question;
+			
+			cout << "\n Option1 : ";
+			cin >> this->op1;
 
+			cout << "\n Option2 : ";
+			cin >> this->op2;
 
+			cout << "\n Option3 : ";
+			cin >> this->op3;
+
+			cout << "\n Option4 : ";
+			cin >> this->op4;
+			
+			cout << "\n Answer : ";
+			cin >> this->ans;
+
+			cout << "\n QuizID : ";
+			cin >> this->quizId;
+		}
+		void getQuestion(int quizId ) {
+			// get questions based on quizID
+		}
 };
 

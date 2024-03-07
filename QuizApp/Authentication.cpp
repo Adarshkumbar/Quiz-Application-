@@ -3,6 +3,7 @@
 #include <string>
 #include "mySqlConnection.h"
 #include"User.cpp"
+#include "QuizAdmin.cpp"
 
 using namespace std;
 
@@ -15,25 +16,63 @@ class Authentication
 	//int userOrQuizAdmin; // 1 -> user . 2-> QuizAdmin
 
 public:
-	void Login(int choice) {
+	string arr[3]; //0->name, 1->pass, 2->table(either user or admin)
+	void Register(int choice) {
 		if (choice == 1) {  // user
 			 // login ( get data from DB ) for  user
-			User user("adie" , "pass");
-			string name = "adie";
-			string pass = "pass";
-			cout << " name : " << name << " \npass : " << pass;
-			addToDB(name, pass);
+			cout << "\nEnter username :" << endl;
+			cin >> arr[0];
+			//arr[0] = "Gojo";  
+			//arr[1] = "JJK";
+			cout << "\nEnter password :" << endl;
+			cin >> arr[1];
+
+			arr[2] = "user";
+			addToDB(arr);
 		}
 		else {						// Quiz Admin
 			// login ( get data from DB )for  QuizAdmin
+			cout << "\nEnter admin username :" << endl;
+			cin >> arr[0];
+	
+			cout << "\nEnter password :" << endl;
+			cin >> arr[1];
+
+			arr[2] = "admin";
+			addToDB(arr);
 		}
 	}
-	void Register(int choice) {
+	void Login(int choice) {
 		if (choice == 1) {  // user
-			// register ( store data in DB )for  user
+			// login ( store data in DB )for  user
+			 // login ( get data from DB ) for  user
+			cout << "\nEnter username :" << endl;
+			cin >> arr[0];
+			//arr[0] = "Gojo";  
+			//arr[1] = "JJK";
+			cout << "\nEnter password :" << endl;
+			cin >> arr[1];
+
+			arr[2] = "user";
+			if (getFromDB(arr)) {
+				User obj;
+				obj.playQuiz();
+			}
+			else {
+				cout <<"\n\n\n\n Xoxox\n\n\n";
+			}
 		}
 		else {						// Quiz Admin
-			// register ( store data in DB ) for  QuizAdmin
+			//Login ( store data in DB ) for  QuizAdmin
+			cout << "\nEnter Admin username :" << endl;
+			cin >> arr[0];
+			//arr[0] = "Gojo";  
+			//arr[1] = "JJK";
+			cout << "\nEnter password :" << endl;
+			cin >> arr[1];
+
+			arr[2] = "admin";
+			getFromDB(arr);
 		}
 	}
 

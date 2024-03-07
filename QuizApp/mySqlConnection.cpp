@@ -12,6 +12,97 @@ const string server = "localhost:3306";
 const string username = "root";
 const string password = "Adarsh@123";
 
+
+void addToDB(string arr[]) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        //string table = "user";
+        // Adjust the SQL query based on the table parameter
+        string query = "INSERT INTO " +arr[2] + "(name, password) VALUES(?, ?)";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setString(1, arr[0]);
+        pstmt->setString(2, arr[1]);
+        pstmt->execute();
+
+        cout << "Data inserted into " << "user" << " table." << endl;
+
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+bool getFromDB(string arr[]) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        // Construct the SQL query to check if the user exists based on both username and password
+        string query = "SELECT COUNT(*) FROM " + arr[2] + " WHERE name = ? AND password = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setString(1, arr[0]);
+        pstmt->setString(2, arr[1]);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+        result->next();
+        int userCount = result->getInt(1);
+
+        if (userCount > 0) {
+            cout << "User with username '" << arr[0] << "' and password exists in the " << arr[2] << " table." << endl;
+        }
+        else {
+            cout << "User with username '" << arr[0] << "' and password does not exist in the " << arr[2] << " table." << endl;
+        }
+
+        delete result;
+        delete pstmt;
+        delete con;
+        return true;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error checking user data: " << e.what() << endl;
+        system("pause");
+    }
+    return false;
+}
+//
+//void addToDB(string& name, string& pass) {
+//
+//	//sql::Driver* driver;
+//	//sql::Connection* con;
+//	//sql::Statement* stmt;
+//	//sql::PreparedStatement* pstmt;
+//	try {
+//		sql::Driver* driver = get_driver_instance();
+//		sql::Connection* con = driver->connect(server, username, password);
+//		con->setSchema("dummy");
+//
+//		sql::PreparedStatement* pstmt = con->prepareStatement("INSERT INTO admin(name, password) VALUES(?, ?)");
+//		pstmt->setString(1, name);
+//		pstmt->setString(2, pass);
+//		pstmt->execute();
+//		cout << "user inserted." << endl;
+//		delete pstmt;
+//		delete con;
+//	}
+//	catch (sql::SQLException& e) {
+//		cout << "Error inserting data: " << e.what() << endl;
+//		system("pause");
+//		exit(1);
+//	}
+//}
+static void getFromDB() {
+
+}
+
 //
 //static void Connection()
 //{
@@ -75,31 +166,3 @@ const string password = "Adarsh@123";
 //	//system("pause");
 //	
 //}
-static void addToDB(string& name, string& pass) {
-
-	//sql::Driver* driver;
-	//sql::Connection* con;
-	//sql::Statement* stmt;
-	//sql::PreparedStatement* pstmt;
-	try {
-		sql::Driver* driver = get_driver_instance();
-		sql::Connection* con = driver->connect(server, username, password);
-		con->setSchema("dummy");
-
-		sql::PreparedStatement* pstmt = con->prepareStatement("INSERT INTO admin(name, password) VALUES(?, ?)");
-		pstmt->setString(1, name);
-		pstmt->setString(2, pass);
-		pstmt->execute();
-		cout << "user inserted." << endl;
-		delete pstmt;
-		delete con;
-	}
-	catch (sql::SQLException& e) {
-		cout << "Error inserting data: " << e.what() << endl;
-		system("pause");
-		exit(1);
-	}
-}
-static void getFromDB() {
-
-}

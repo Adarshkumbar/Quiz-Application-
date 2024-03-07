@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include <string>
+#include"Quiz.cpp"
 using namespace std;
 class QuizAdmin
 {
@@ -13,10 +14,13 @@ public:
 		this->password = password;
 	}
 	void getAdmin() {
-		cout << " Name is : " << userName << " & Password is :" << password;
+		//cout << " Name is : " << userName << " & Password is :" << password;
 	}
 
-	void addQuiz();
+	void addQuiz() {
+		Quiz quiz;
+		quiz.setQuiz();
+	}
 	void removeQuiz();
 };
 

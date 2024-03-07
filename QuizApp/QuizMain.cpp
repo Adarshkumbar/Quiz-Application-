@@ -7,15 +7,18 @@
 #include "mySqlConnection.h"
 using namespace std;
 
-int main()
+int main()   // 1 - user ...2 - admin
 {
 	//Connection();
-	User obj("Adarsh", "pass");
-
+	User obj;
+	obj.playQuiz();
 	Authentication auth;
-	auth.Login(1); // for user
-	obj.getUser();
-
+	//auth.Register(1) ; // for user
+	auth.Login(1);
+	//string name = "adie";
+	//string pass = "pass";
+	//string table = "user";
+	//addToDB(name, pass);
 	/*string name = "adie";
 	string pass = "pass";
 	addToDB(name, pass);*/
