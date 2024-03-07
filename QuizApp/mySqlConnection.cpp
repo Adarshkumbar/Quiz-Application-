@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-
 #include "Quiz.h"
 #include"mySqlConnection.h"
 #include <cppconn/driver.h>
@@ -131,6 +130,36 @@ int totalQuiz() {
         cout << "Error inserting data: " << e.what() << endl;
         system("pause");
         exit(1);
+    }
+}
+void showAllQuiz() {
+    vector <pair <int, string>> quiz;
+    try {
+      
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        // Construct the SQL query to check if the user exists based on both username and password
+        string query = "SELECT * FROM QuizManagement";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+
+        // printing all quiz available
+        while (result->next()) {
+            cout<<"\n ID : " <<result->getInt("quizID");
+            cout<<"\t Type :" <<result->getString("title") << endl;
+        }
+
+        delete result;
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error checking data: " << e.what() << endl;
+        system("pause");
     }
 }
 //}

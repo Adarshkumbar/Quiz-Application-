@@ -44,7 +44,7 @@ void Authentication :: Login(int choice) {
 		if (getFromDB(arr)) {
 			User obj;
 			cout << "\nWelcome user \n";
-			//obj.playQuiz();
+			obj.playQuiz();
 		}
 		else {
 			cout << "\n\n\n\n Xoxox\n\n\n";
