@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+#include "Quiz.h"
 #include"mySqlConnection.h"
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
@@ -12,6 +13,11 @@ const string server = "localhost:3306";
 const string username = "root";
 const string password = "Adarsh@123";
 
+class DBcon {
+    DBcon() {
+
+    }
+};
 
 void addToDB(string arr[]) {
     try {
@@ -60,6 +66,7 @@ bool getFromDB(string arr[]) {
         }
         else {
             cout << "User with username '" << arr[0] << "' and password does not exist in the " << arr[2] << " table." << endl;
+            return false;
         }
 
         delete result;
@@ -73,35 +80,38 @@ bool getFromDB(string arr[]) {
     }
     return false;
 }
-//
-//void addToDB(string& name, string& pass) {
-//
-//	//sql::Driver* driver;
-//	//sql::Connection* con;
-//	//sql::Statement* stmt;
-//	//sql::PreparedStatement* pstmt;
-//	try {
-//		sql::Driver* driver = get_driver_instance();
-//		sql::Connection* con = driver->connect(server, username, password);
-//		con->setSchema("dummy");
-//
-//		sql::PreparedStatement* pstmt = con->prepareStatement("INSERT INTO admin(name, password) VALUES(?, ?)");
-//		pstmt->setString(1, name);
-//		pstmt->setString(2, pass);
-//		pstmt->execute();
-//		cout << "user inserted." << endl;
-//		delete pstmt;
-//		delete con;
-//	}
-//	catch (sql::SQLException& e) {
-//		cout << "Error inserting data: " << e.what() << endl;
-//		system("pause");
-//		exit(1);
-//	}
 //}
-static void getFromDB() {
-
-}
+//void storeQuizInDb(Question obj) {
+//    try {
+//        sql::Driver* driver = get_driver_instance();
+//        sql::Connection* con = driver->connect(server, username, password);
+//        con->setSchema("dummy");
+//
+//        //string table = "user";
+//        // Adjust the SQL query based on the table parameter
+//        string query = "INSERT INTO Question(question , op1  , op2, op3, op4 , ans , quizID) VALUES(?, ? ,? , ? , ? , ? , ?)";
+//        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+//        pstmt->setString(1, obj.question);
+//        pstmt->setString(2, obj.op1);
+//        pstmt->setString(3, obj.op2);
+//        pstmt->setString(4, obj.op3);
+//        pstmt->setString(5, obj.op4);
+//        pstmt->setString(6, obj.ans);
+//        pstmt->setInt(7, obj.quizId);
+//        pstmt->execute();
+//
+//        cout << "Data inserted into " << "user" << " table." << endl;
+//
+//        delete pstmt;
+//        delete con;
+//    }
+//    catch (sql::SQLException& e) {
+//        cout << "Error inserting data: " << e.what() << endl;
+//        system("pause");
+//        exit(1);
+//    }
+//}
+//  
 
 //
 //static void Connection()

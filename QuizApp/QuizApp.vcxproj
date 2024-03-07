@@ -142,6 +142,11 @@
   <ItemGroup>
     <ClInclude Include="Authentication.h" />
     <ClInclude Include="mySqlConnection.h" />
+    <ClInclude Include="ProgressTracker.h" />
+    <ClInclude Include="Question.h" />
+    <ClInclude Include="Quiz.h" />
+    <ClInclude Include="QuizAdmin.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

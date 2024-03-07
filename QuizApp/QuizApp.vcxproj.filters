@@ -47,5 +47,20 @@
     <ClInclude Include="mySqlConnection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ProgressTracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quiz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuizAdmin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

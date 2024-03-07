@@ -1,19 +1,10 @@
-#pragma once
-#include<iostream>
-#include <string>
-using namespace std;
-class User
+
+#include "User.h"
+
+void User::getUser() {
+	cout << " user";
+}
+
+void User::playQuiz()
 {
-	string userName;
-	string password;
-
-public:
-	void getUser() {
-		cout << " Name is : " << userName << " & Password is :" << password;
-	}
-
-	void playQuiz() {
-		cout << " hi";
-	}
-};
-
+}

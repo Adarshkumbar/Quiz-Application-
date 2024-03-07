@@ -1,38 +1,33 @@
 #pragma once
 #include<iostream>
 #include <string>
-#include"Question.cpp"
+#include"Question.h"
+#include"Quiz.h"
+#include "mySqlConnection.h"
 using namespace std;
-class Quiz
-{
-	int quizId;
-	string title;
 
-public:
-	void setQuiz() {
-		cout << "\nEnter quiz id ";
-		
-		cin>>this->quizId;
+void Quiz :: setQuiz() {
+	cout << "\nEnter quiz id ";
+	cin >> this->quizId;
 
-		cout << "\nEnter quiz title ";
-		cin >> this->title;
+	cout << "\nEnter quiz title ";
+	cin >> this->title;
+}
+void Quiz::storeQuestions(int quizId) {
+	Question q[5];
+
+	for (int i = 0; i < 5; i++) {
+		q[i].createQuestion();
+		// Store quiz in DB
+		//storeQuizInDb(q[i]);
 	}
-	void storeQuestions(int quizId) {
-		Question q[5];
+}
+void Quiz::getQuestions() {
+	Question q[5];
 
-		for (int i = 0; i < 5; i++) {
-			q[i].createQuestion();
-		}
+	for (int i = 0; i < 5; i++) {
+		//q[i].getQuestion(quizId);
+
+
 	}
-	void getQuestions() {
-		Question q[5];
-
-		for (int i = 0; i < 5; i++) {
-			q[i].getQuestion(quizId);
-
-		}
-	}
-	// creating 5 Objects of Question class to Store 5 questions for each Quiz	 
-	
-};
-
+}

@@ -1,26 +1,24 @@
 #pragma once
-#include<iostream>
-#include <string>
-#include"Quiz.cpp"
-using namespace std;
-class QuizAdmin
+#include"Quiz.h"
+#include"QuizAdmin.h"
+
+QuizAdmin::QuizAdmin()
 {
-	string userName;
-	string password;
+}
 
-public:
-	QuizAdmin(string userName, string password) {
-		this->userName = userName;
-		this->password = password;
-	}
-	void getAdmin() {
-		//cout << " Name is : " << userName << " & Password is :" << password;
-	}
+QuizAdmin::~QuizAdmin()
+{
+}
 
-	void addQuiz() {
-		Quiz quiz;
-		quiz.setQuiz();
-	}
-	void removeQuiz();
-};
+void QuizAdmin :: getAdmin() {
+	//cout << " Name is : " << userName << " & Password is :" << password;
+}
+
+void QuizAdmin:: addQuiz() {
+	Quiz quiz;
+	quiz.setQuiz();
+}
+void QuizAdmin:: removeQuiz() {
+
+}
 

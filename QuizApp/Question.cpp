@@ -1,42 +1,25 @@
 
+#include "Question.h"
 #include<iostream>
-#include <string>
-using namespace std;
-class Question
-{
-	string question;
-	string op1;
-	string op2;
-	string op3;
-	string op4;
-	char ans;
-	int quizId;
+void Question::createQuestion() {
+    cout << "\nEnter Question: ";
+    cin >> this->question;
 
-public:
-		void createQuestion() {  // Store all aspects in Db
-			cout << "\nEnter Question :";
-			cin >> this->question;
-			
-			cout << "\n Option1 : ";
-			cin >> this->op1;
+    cout << "\nOption 1: ";
+    cin >> this->op1;
 
-			cout << "\n Option2 : ";
-			cin >> this->op2;
+    cout << "\nOption 2: ";
+    cin >> this->op2;
 
-			cout << "\n Option3 : ";
-			cin >> this->op3;
+    cout << "\nOption 3: ";
+    cin >> this->op3;
 
-			cout << "\n Option4 : ";
-			cin >> this->op4;
-			
-			cout << "\n Answer : ";
-			cin >> this->ans;
+    cout << "\nOption 4: ";
+    cin >> this->op4;
 
-			cout << "\n QuizID : ";
-			cin >> this->quizId;
-		}
-		void getQuestion(int quizId ) {
-			// get questions based on quizID
-		}
-};
+    cout << "\nAnswer: ";
+    cin >> this->ans;
 
+    cout << "\nQuiz ID: ";
+    cin >> this->quizId;
+}
