@@ -17,6 +17,7 @@ void QuizAdmin :: getAdmin() {
 void QuizAdmin:: addQuiz() {
 	Quiz quiz;
 	quiz.setQuiz();
+	//quiz.storeQuestions(1);
 }
 void QuizAdmin:: removeQuiz() {
 

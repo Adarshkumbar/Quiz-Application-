@@ -63,9 +63,10 @@ bool getFromDB(string arr[]) {
 
         if (userCount > 0) {
             cout << "User with username '" << arr[0] << "' and password exists in the " << arr[2] << " table." << endl;
+ 
         }
         else {
-            cout << "User with username '" << arr[0] << "' and password does not exist in the " << arr[2] << " table." << endl;
+            cout << "Username '" << arr[0] << "' and password does not exist in the " << arr[2] << " table." << endl;
             return false;
         }
 
@@ -78,7 +79,59 @@ bool getFromDB(string arr[]) {
         cout << "Error checking user data: " << e.what() << endl;
         system("pause");
     }
-    return false;
+}
+void addQuiz(pair<int, string> pair) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+
+
+        string query = "INSERT INTO  QuizManagement (quizId, title , description) VALUES(?, ? , ?)";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setInt(1, pair.first);
+        pstmt->setString(2, pair.second);
+        pstmt->setString(3, pair.second);
+        pstmt->execute();
+
+        cout << "Data inserted into " << "Quiz Management" << " table." << endl;
+
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+
+int totalQuiz() {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+
+        string query = "SELECT COUNT(*) FROM  quizManagement";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+        result->next();
+        int quizCount = result->getInt(1);
+
+        delete pstmt;
+        delete con;
+        
+        return  quizCount;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
 }
 //}
 //void storeQuizInDb(Question obj) {

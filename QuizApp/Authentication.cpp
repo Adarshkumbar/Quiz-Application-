@@ -43,6 +43,7 @@ void Authentication :: Login(int choice) {
 		arr[2] = "user";
 		if (getFromDB(arr)) {
 			User obj;
+			cout << "\nWelcome user \n";
 			//obj.playQuiz();
 		}
 		else {
@@ -53,15 +54,18 @@ void Authentication :: Login(int choice) {
 		//Login ( store data in DB ) for  QuizAdmin
 		cout << "\nEnter Admin username :" << endl;
 		cin >> arr[0];
-		//arr[0] = "Gojo";  
-		//arr[1] = "JJK";
+
 		cout << "\nEnter password :" << endl;
 		cin >> arr[1];
 
 		arr[2] = "admin";
 		if (getFromDB(arr)) {
+			cout << "\nWelcome admin \n";
 			QuizAdmin obj;
 			obj.addQuiz();
+		}
+		else {
+			cout << "\n\n\n\n Xoxox\n\n\n";
 		}
 	}
 }

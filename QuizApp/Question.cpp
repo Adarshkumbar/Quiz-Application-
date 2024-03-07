@@ -22,4 +22,6 @@ void Question::createQuestion() {
 
     cout << "\nQuiz ID: ";
     cin >> this->quizId;
+
+    cout << " \nDone from Question Class\n";
 }
