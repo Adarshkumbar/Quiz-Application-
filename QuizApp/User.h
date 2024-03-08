@@ -6,6 +6,7 @@ class User
 {
 	string userName;
 	string password;
+	int score;
 
 public:
 	void getUser();

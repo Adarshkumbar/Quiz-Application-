@@ -106,14 +106,14 @@ void addQuiz(pair<int, string> pair) {
     }
 }
 
-int totalQuiz() {
+int totalQuiz(string table) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
         con->setSchema("dummy");
 
 
-        string query = "SELECT COUNT(*) FROM  quizManagement";
+        string query = "SELECT COUNT(*) FROM " + table;
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
 
         // Execute the query
@@ -160,6 +160,73 @@ void showAllQuiz() {
     catch (sql::SQLException& e) {
         cout << "Error checking data: " << e.what() << endl;
         system("pause");
+    }
+}
+
+vector<vector<string>> getQuiz(int quizId) {
+    vector<vector<string>> quizData;
+
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        // Construct the SQL query to retrieve quiz data based on quizId
+        string query = "SELECT questionText, optionA, optionB, optionC, optionD, answer FROM Question WHERE quizId = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setInt(1, quizId);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+
+        // Fetch quiz data
+        while (result->next()) {
+            vector<string> quizRow;
+            quizRow.push_back(result->getString("questionText"));
+            quizRow.push_back(result->getString("optionA"));
+            quizRow.push_back(result->getString("optionB"));
+            quizRow.push_back(result->getString("optionC"));
+            quizRow.push_back(result->getString("optionD"));
+            quizRow.push_back(result->getString("answer"));
+            quizData.push_back(quizRow);
+        }
+
+        delete result;
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error retrieving quiz data: " << e.what() << endl;
+        // Handle the exception appropriately
+    }
+
+    return quizData;
+}
+int totalQuestion(string table, int quizId) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+
+        string query = "SELECT COUNT(*) FROM Question Where quizId = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setInt(1, quizId);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+        result->next();
+        int quizCount = result->getInt(1);
+
+        delete pstmt;
+        delete con;
+
+        return  quizCount;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
     }
 }
 //}

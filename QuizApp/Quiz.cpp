@@ -9,8 +9,8 @@ using namespace std;
 void Quiz :: setQuiz() {
 	pair < int, string> pair;
 	// getting quiz id from quizManagement table
-
-	this->quizId = totalQuiz() + 1;
+	string table = "quizManagement";
+	this->quizId = totalQuiz(table) + 1;
 	pair.first = quizId;
 
 	cout << "\nEnter quiz title ";
