@@ -9,7 +9,11 @@ class ProgressTracker
 	string userName; // Foreign key
 
 public:
-	void getScore(int quizId, string u);
+	void getScore(int quizId, string userName);
+
+	void setScore(int quizId, string userName, int score);
+
+	void calculatePercentage(int score, int totalQuestions);
 };
 
 

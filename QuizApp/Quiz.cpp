@@ -23,6 +23,12 @@ void Quiz::storeQuestions(int quizId) {
 	Question q;
 	q.createQuestion(quizId);	
 }
-void Quiz::getQuestions() {
+vector<vector<string>>  Quiz::getQuiz(int quizId) {
+
+	// getting quiz and questions for it
 	
+
+	vector<vector<string>> quiz = getQuizDB(quizId);
+
+	return quiz;
 }

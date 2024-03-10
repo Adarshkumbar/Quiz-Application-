@@ -163,7 +163,7 @@ void showAllQuiz() {
     }
 }
 
-vector<vector<string>> getQuiz(int quizId) {
+vector<vector<string>> getQuizDB(int quizId) {
     vector<vector<string>> quizData;
 
     try {
@@ -180,7 +180,8 @@ vector<vector<string>> getQuiz(int quizId) {
         sql::ResultSet* result = pstmt->executeQuery();
 
         // Fetch quiz data
-        while (result->next()) {
+        while (auto x = result->next()) {
+ 
             vector<string> quizRow;
             quizRow.push_back(result->getString("questionText"));
             quizRow.push_back(result->getString("optionA"));
@@ -244,7 +245,9 @@ void getProgress(int quizId, string userName) {
         // Execute the query
         sql::ResultSet* result = pstmt->executeQuery();
         //while (result->next()) {
-            result->next();
+        result->next();
+        
+            
             string table = " table";
             // << " Score for " << result->getInt("quizID");
             cout << "\nUser Name : " << result->getString("userName");
@@ -287,6 +290,89 @@ void addQuesion(pair<int, vector<string>> pair) {
 
         delete pstmt;
         delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+
+void addScore(int quizId, string userName, int score) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        string query = "INSERT INTO progresstracker (quizId, userName , score) VALUES(?, ? , ? )";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        pstmt->setInt(1, quizId);
+        pstmt->setString(2, userName);
+        pstmt->setInt(3, score);
+        pstmt->execute();
+
+        cout << "Data inserted into " << "Progress Tracker" << " table." << endl;
+
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+
+bool alreadyPlayed(int quizId, string userName) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        string query = "SELECT COUNT(*) FROM progresstracker quizId = ? AND  userName = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        pstmt->setInt(1, quizId);
+        pstmt->setString(2, userName);
+        pstmt->execute();
+
+        sql::ResultSet* result = pstmt->executeQuery();
+        result->next();
+        int count = result->getInt(1);
+
+        delete pstmt;
+        delete con;
+
+        if (count > 1)
+            return true;
+        else
+            return false;
+
+       
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+
+void updateScore(int quizId, string userName) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+        string query = "UPDATE progresstracker WHERE quizId = ? AND  userName = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        pstmt->setInt(1, quizId);
+        pstmt->setString(2, userName);
+        pstmt->execute();
+        delete pstmt;
+        delete con;
+
     }
     catch (sql::SQLException& e) {
         cout << "Error inserting data: " << e.what() << endl;

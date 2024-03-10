@@ -12,7 +12,7 @@ class Quiz
 public:
 	void setQuiz();
 	void storeQuestions(int quizId);
-	void getQuestions();
+	vector<vector<string>>  getQuiz(int quizId);
 	// creating 5 Objects of Question class to Store 5 questions for each Quiz	 
 };
 
