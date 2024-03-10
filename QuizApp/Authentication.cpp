@@ -35,7 +35,7 @@ void Authentication :: Login(int choice) {
 
 		arr[2] = "user";
 		if (getFromDB(arr)) {
-			cout << "\nWelcome user \n";
+			cout << "\n~~~~~~~~~~~~~~~~ Welcome "<< arr[0]<< " ~~~~~~~~~~~~~~~~\n";
 			User obj;
 			
 			obj.setUser(arr[0] ,arr[1]);
@@ -66,7 +66,7 @@ void Authentication :: Login(int choice) {
 
 		arr[2] = "admin";
 		if (getFromDB(arr)) {
-			cout << "\nWelcome admin \n";
+			cout << "\n~~~~~~~~~~~~~~~~ Welcome Admin ~~~~~~~~~~~~~~~~\n";
 			QuizAdmin obj;
 			obj.addQuiz();
 		}

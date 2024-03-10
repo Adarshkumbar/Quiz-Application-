@@ -9,7 +9,7 @@ void  ProgressTracker :: getScore(int quizId, string userName) {
 
 void ProgressTracker::setScore(int quizId, string userName, int score) {
 	if (alreadyPlayed(quizId, userName)){
-		updateScore(quizId, userName);
+		updateScore(quizId, userName,score);
 	}
 	else {
 		addScore(quizId, userName, score);
@@ -18,11 +18,11 @@ void ProgressTracker::setScore(int quizId, string userName, int score) {
 }
 void ProgressTracker::calculatePercentage(int score, int totalQuestions) {
 	if (score / totalQuestions > (1 / 2)) {
-		cout << "\n********************** Congratulations you Scored **********************" << score << "/" << totalQuestions << endl;
+		cout << "\n********************** Congratulations you Scored "<< score << " / " << totalQuestions<< " **********************"  << endl;
 	}
 	else {
-		cout << "\n********************** You Scored [Better Luck next time ]**********************" << score << "/" << totalQuestions << endl;
+		cout << "\n********************** You Scored " << score << "/" << totalQuestions << " [Better Luck next time] **********************" << endl;
 	}
-	double percentage = (score * 1.0/ totalQuestions * 1.0);
-	cout << "Percentage is :" << percentage << endl;
+	double percentage = (score * 1.0/ totalQuestions * 1.0) *100;
+	cout << "\t\t\t\tPercentage is :" << percentage <<"%"<< endl;
 }

@@ -22,10 +22,12 @@ void User::playQuiz()
 
 	int questionCount = totalQuestion(table, quizId);
 
-	cout <<"\n---[This Quiz Has " << questionCount << " Questions]---\n";
+	cout <<"\n\t--------[This Quiz Has " << questionCount << " Questions]--------\n";
+	int i = 0;
 	for (const auto& row : quiz) {
+		i++;
 		char ans;
-		cout << "\nQuestion: " << row[0] << endl;
+		cout << "\nQuestion:" <<"[" <<i <<"] " << row[0] << endl;
 		cout << "\nOptions A: " << row[1] << "\nOptions B: " << row[2] << "\nOptions C: " << row[3] << "\nOptions D: " << row[4] << endl;
 		//cout << "Correct Answer: " << row[5] << endl;
 		cout << "\nEnter Option (A | B | C | D) :";
@@ -39,9 +41,10 @@ void User::playQuiz()
 		cout << "--------------------------" << endl;
 	}
 	
-
 	ProgressTracker progress;
 	progress.setScore(quizId, this->userName, count);
+	progress.calculatePercentage(count, questionCount);
+
 	cout << "\n ********************** Thank you for playing **********************\n";
 }
 

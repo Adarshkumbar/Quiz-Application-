@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Authentication.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ProgressTracker.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Quiz.cpp" />
@@ -141,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authentication.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="mySqlConnection.h" />
     <ClInclude Include="ProgressTracker.h" />
     <ClInclude Include="Question.h" />

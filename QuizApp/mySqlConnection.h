@@ -16,7 +16,7 @@ void getProgress(int quizId, string userName);
 void addQuesion(pair<int, vector<string>> pair);
 void addScore(int quizId, string userName, int score);
 bool alreadyPlayed(int quizId, string userName);
-void updateScore(int quizId,string userName);
+void updateScore(int quizId,string userName ,int score);
 
 #endif // MYSQLCONNECTION_H
 
