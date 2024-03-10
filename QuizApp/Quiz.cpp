@@ -20,19 +20,9 @@ void Quiz :: setQuiz() {
 	addQuiz(pair);
 }
 void Quiz::storeQuestions(int quizId) {
-	Question q[5];
-
-	for (int i = 0; i < 5; i++) {
-		q[i].createQuestion();
-		cout << "\ninserted :" << i + 1 << "th question";
-		// Store quiz in DB
-		//storeQuizInDb(q[i]);
-	}
+	Question q;
+	q.createQuestion(quizId);	
 }
 void Quiz::getQuestions() {
-	Question q[5];
-
-	for (int i = 0; i < 5; i++) {
-		//q[i].getQuestion(quizId);
-	}
+	
 }

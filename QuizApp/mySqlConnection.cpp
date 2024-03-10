@@ -202,7 +202,7 @@ vector<vector<string>> getQuiz(int quizId) {
 
     return quizData;
 }
-int totalQuestion(string table, int quizId) {
+int totalQuestion(string table , int quizId) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -229,99 +229,68 @@ int totalQuestion(string table, int quizId) {
         exit(1);
     }
 }
-//}
-//void storeQuizInDb(Question obj) {
-//    try {
-//        sql::Driver* driver = get_driver_instance();
-//        sql::Connection* con = driver->connect(server, username, password);
-//        con->setSchema("dummy");
-//
-//        //string table = "user";
-//        // Adjust the SQL query based on the table parameter
-//        string query = "INSERT INTO Question(question , op1  , op2, op3, op4 , ans , quizID) VALUES(?, ? ,? , ? , ? , ? , ?)";
-//        sql::PreparedStatement* pstmt = con->prepareStatement(query);
-//        pstmt->setString(1, obj.question);
-//        pstmt->setString(2, obj.op1);
-//        pstmt->setString(3, obj.op2);
-//        pstmt->setString(4, obj.op3);
-//        pstmt->setString(5, obj.op4);
-//        pstmt->setString(6, obj.ans);
-//        pstmt->setInt(7, obj.quizId);
-//        pstmt->execute();
-//
-//        cout << "Data inserted into " << "user" << " table." << endl;
-//
-//        delete pstmt;
-//        delete con;
-//    }
-//    catch (sql::SQLException& e) {
-//        cout << "Error inserting data: " << e.what() << endl;
-//        system("pause");
-//        exit(1);
-//    }
-//}
-//  
+void getProgress(int quizId, string userName) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
 
-//
-//static void Connection()
-//{
-//
-//	sql::Driver* driver;
-//	sql::Connection* con;
-//	sql::Statement* stmt;
-//	sql::PreparedStatement* pstmt;
-//
-//
-//	try
-//	{
-//		driver = get_driver_instance();
-//		con = driver->connect(server, username, password);
-//	}
-//	catch (sql::SQLException e)
-//	{
-//		cout << "Could not connect to server. Error message: " << e.what() << endl;
-//		system("pause");
-//		exit(1);
-//	}
-//
-//	// create database "quickstartdb" ahead of time
-//	con->setSchema("dummy");
-//
-//	/*stmt = con->createStatement();
-//	stmt->execute("DROP TABLE IF EXISTS inventory");
-//	cout << "Finished dropping table (if existed)" << endl;
-//	stmt->execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);");
-//	cout << "Finished creating table" << endl;
-//	delete stmt;
-//
-//	pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
-//	pstmt->setString(1, "banana");
-//	pstmt->setInt(2, 150);
-//	pstmt->execute();
-//	cout << "One row inserted." << endl;
-//
-//	pstmt->setString(1, "orange");
-//	pstmt->setInt(2, 154);
-//	pstmt->execute();
-//	cout << "One row inserted." << endl;
-//
-//	pstmt->setString(1, "apple");
-//	pstmt->setInt(2, 100);
-//	pstmt->execute();
-//	cout << "One row inserted." << endl;
-//
-//	pstmt->setString(1, "mango");
-//	pstmt->setInt(2, 120);
-//	pstmt->execute();
-//	cout << "One row inserted." << endl;
-//
-//	pstmt->setString(1, "kiwi");
-//	pstmt->setInt(2, 100);
-//	pstmt->execute();
-//	cout << "One row inserted." << endl;
-//
-//	delete pstmt;
-//	delete con;*/
-//	//system("pause");
-//	
-//}
+
+        string query = "SELECT * FROM ProgressTracker where quizId = ? and userName = ?";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+        pstmt->setInt(1, quizId);
+        pstmt->setString(2, userName);
+
+        // Execute the query
+        sql::ResultSet* result = pstmt->executeQuery();
+        //while (result->next()) {
+            result->next();
+            string table = " table";
+            // << " Score for " << result->getInt("quizID");
+            cout << "\nUser Name : " << result->getString("userName");
+            cout << " Score  " << result->getString("score")<<" Out of "<< totalQuestion(table ,quizId);
+            
+        //}
+
+        delete pstmt;
+        delete con;
+
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}
+
+void addQuesion(pair<int, vector<string>> pair) {
+    try {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* con = driver->connect(server, username, password);
+        con->setSchema("dummy");
+
+
+
+        string query = "INSERT INTO  Question (questionText, optionA, optionB, optionC, optionD, answer, quizId) VALUES(?, ? , ? ,? ,? , ? , ?)";
+        sql::PreparedStatement* pstmt = con->prepareStatement(query);
+
+        pstmt->setString(1, pair.second[0]);
+        pstmt->setString(2, pair.second[1]);
+        pstmt->setString(3, pair.second[2]);
+        pstmt->setString(4, pair.second[3]);
+        pstmt->setString(5, pair.second[4]);
+        pstmt->setString(6, pair.second[5]);
+        pstmt->setInt(7, pair.first);
+        pstmt->execute();
+
+        cout << "Data inserted into " << "Question " << " table." << endl;
+
+        delete pstmt;
+        delete con;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error inserting data: " << e.what() << endl;
+        system("pause");
+        exit(1);
+    }
+}

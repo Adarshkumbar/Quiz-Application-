@@ -5,20 +5,16 @@
 using namespace std;
 
 void Authentication ::  Register(int choice) {
-	if (choice == 1) {  // user
-		// login ( get data from DB ) for  user
+	if (choice == 1) {  
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
-		//arr[0] = "Gojo";  
-		//arr[1] = "JJK";
 		cout << "\nEnter password :" << endl;
 		cin >> arr[1];
 
 		arr[2] = "user";
 		addToDB(arr);
 	}
-	else {						// Quiz Admin
-		// login ( get data from DB )for  QuizAdmin
+	else {
 		cout << "\nEnter admin username :" << endl;
 		cin >> arr[0];
 
@@ -30,28 +26,38 @@ void Authentication ::  Register(int choice) {
 	}
 }
 void Authentication :: Login(int choice) {
-	if (choice == 1) {  // user
-		// login ( store data in DB )for  user
-		 // login ( get data from DB ) for  user
+	if (choice == 1) {  
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
-		//arr[0] = "Gojo";  
-		//arr[1] = "JJK";
+	
 		cout << "\nEnter password :" << endl;
 		cin >> arr[1];
 
 		arr[2] = "user";
 		if (getFromDB(arr)) {
-			User obj;
 			cout << "\nWelcome user \n";
-			obj.playQuiz();
+			User obj;
+			
+			obj.setUser(arr[0] ,arr[1]);
+
+
+			int choice;
+			cout << "\n1: Play Quiz \n2: Progress :";
+			cin >> choice;
+
+			if (choice == 1)
+				obj.playQuiz();
+			else if (choice == 2)
+				obj.Progress();
+			else {
+				return;
+			}
 		}
 		else {
 			cout << "\n\n\n\n Xoxox\n\n\n";
 		}
 	}
-	else {						// Quiz Admin
-		//Login ( store data in DB ) for  QuizAdmin
+	else {					
 		cout << "\nEnter Admin username :" << endl;
 		cin >> arr[0];
 

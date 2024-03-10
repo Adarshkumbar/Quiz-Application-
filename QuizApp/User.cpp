@@ -1,6 +1,7 @@
 
 #include "User.h"
 #include "mySqlConnection.h"
+#include "ProgressTracker.h"
 void User::getUser() {
 	cout << " user";
 }
@@ -37,4 +38,22 @@ void User::playQuiz()
 	cout << "\n Congratulations you Scored " << count << "/" << questionCount<<endl;
 
 	cout << "\n Thank you for playing \n";
+}
+
+void User::setUser(string userName, string password) {
+	this->userName = userName;
+	this->password = password;
+}
+
+void User:: Progress() {
+	int quizId;
+	ProgressTracker progress;
+
+
+	showAllQuiz();
+	cout << "\n Choose ID of Quiz you want to check score of : ";
+	cin >> quizId;
+	cout << "\nthis is user : " << this->userName <<endl;
+	progress.getScore(quizId , userName);
+
 }

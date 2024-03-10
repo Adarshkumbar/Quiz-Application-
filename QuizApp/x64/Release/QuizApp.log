@@ -1,9 +1,12 @@
-﻿  User.cpp
+﻿  Question.cpp
+  Quiz.cpp
+  QuizAdmin.cpp
+  mySqlConnection.cpp
      Creating library C:\QuizApplication\QuizApp\x64\Release\QuizApp.lib and object C:\QuizApplication\QuizApp\x64\Release\QuizApp.exp
   Generating code
-  41 of 348 functions (11.8%) were compiled, the rest were copied from previous compilation.
-    4 functions were new in current compilation
-    34 functions had inline decision re-evaluated but remain unchanged
+  4 of 374 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    14 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 mysqlcppconn-static.lib(mysql_driver.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_driver.obj)' or at ''; linking object as if no debug info
 mysqlcppconn-static.lib(mysql_connection.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_connection.obj)' or at ''; linking object as if no debug info

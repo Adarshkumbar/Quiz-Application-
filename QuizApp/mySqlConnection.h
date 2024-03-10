@@ -11,6 +11,9 @@ int totalQuiz(string table);
 void showAllQuiz();
 int totalQuestion(string table, int quizId);
 vector <vector<string >> getQuiz(int quizId);
+void getProgress(int quizId, string userName);
+
+void addQuesion(pair<int, vector<string>> pair);
 //void storeQuizInDb(Question q);
 #endif // MYSQLCONNECTION_H
 

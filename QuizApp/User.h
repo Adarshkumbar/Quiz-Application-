@@ -11,5 +11,9 @@ class User
 public:
 	void getUser();
 
+	void setUser(string , string);
+
 	void playQuiz();
+
+	void Progress();
 };
