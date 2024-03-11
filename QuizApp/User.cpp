@@ -61,6 +61,6 @@ void User:: Progress() {
 	showAllQuiz();
 	cout << "\n Choose ID of Quiz you want to check score of : ";
 	cin >> quizId;
-	cout << "\nthis is user : " << this->userName <<endl;
+	//cout << "\nthis is user : " << this->userName <<endl;
 	progress.getScore(quizId , userName);
 }

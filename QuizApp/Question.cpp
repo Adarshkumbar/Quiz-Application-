@@ -42,7 +42,7 @@ void Question::createQuestion(int quizId) {
     //Pair.first = quizId;
     Pair.first = this ->quizId =  quizId;
 
-    cout << "\nDone from Question Class\n";
+    //cout << "\nDone from Question Class\n";
 
     addQuesion(Pair);
 }

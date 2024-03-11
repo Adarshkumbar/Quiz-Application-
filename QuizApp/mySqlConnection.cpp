@@ -21,7 +21,7 @@ void addToDB(string arr[]) {
         sql::Connection* con = driver->connect(server, username, password);
         con->setSchema("dummy");
 
-        string query = "INSERT INTO " +arr[2] + "(name, password) VALUES(?, ?)";
+        string query = "INSERT INTO " + arr[2] + "(name, password) VALUES(?, ?)";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
         pstmt->setString(1, arr[0]);
         pstmt->setString(2, arr[1]);
@@ -55,7 +55,7 @@ bool getFromDB(string arr[]) {
         int userCount = result->getInt(1);
 
         if (userCount > 0) {
-           // cout << "User with username '" << arr[0] << "' and password exists in the " << arr[2] << " table." << endl;
+            // cout << "User with username '" << arr[0] << "' and password exists in the " << arr[2] << " table." << endl;
         }
         else {
             cout << "Username '" << arr[0] << "' and password does not exist in the " << arr[2] << " table." << endl;
@@ -115,7 +115,7 @@ int totalQuiz(string table) {
 
         delete pstmt;
         delete con;
-        
+
         return  quizCount;
     }
     catch (sql::SQLException& e) {
@@ -127,7 +127,7 @@ int totalQuiz(string table) {
 void showAllQuiz() {
     vector <pair <int, string>> quiz;
     try {
-      
+
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
         con->setSchema("dummy");
@@ -136,13 +136,13 @@ void showAllQuiz() {
         string query = "SELECT * FROM QuizManagement";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
 
-    
+
         sql::ResultSet* result = pstmt->executeQuery();
 
         // printing all quiz available
         while (result->next()) {
-            cout<<"\n ID : " <<result->getInt("quizID");
-            cout<<"\t Type :" <<result->getString("title") << endl;
+            cout << "\n ID : " << result->getInt("quizID");
+            cout << "\t Type :" << result->getString("title") << endl;
         }
 
         delete result;
@@ -170,9 +170,9 @@ vector<vector<string>> getQuizDB(int quizId) {
 
         sql::ResultSet* result = pstmt->executeQuery();
 
-   
+
         while (auto x = result->next()) {
- 
+
             vector<string> quizRow;
             quizRow.push_back(result->getString("questionText"));
             quizRow.push_back(result->getString("optionA"));
@@ -195,7 +195,7 @@ vector<vector<string>> getQuizDB(int quizId) {
 
     return quizData;
 }
-int totalQuestion(string table , int quizId) {
+int totalQuestion(string table, int quizId) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -237,13 +237,13 @@ void getProgress(int quizId, string userName) {
         sql::ResultSet* result = pstmt->executeQuery();
         //while (result->next()) {
         result->next();
-        
-            
-            string table = " table";
-            // << " Score for " << result->getInt("quizID");
-            cout << "\nUser Name : " << result->getString("userName");
-            cout << " Score  " << result->getString("score")<<" Out of "<< totalQuestion(table ,quizId);
-            
+
+
+        string table = " table";
+        // << " Score for " << result->getInt("quizID");
+        cout << "\nUser Name : " << result->getString("userName");
+        cout << " Score  " << result->getString("score") << " Out of " << totalQuestion(table, quizId);
+
         //}
 
         delete pstmt;
@@ -301,7 +301,7 @@ void addScore(int quizId, string userName, int score) {
         pstmt->setInt(3, score);
         pstmt->execute();
 
-   
+
 
         delete pstmt;
         delete con;
@@ -313,7 +313,7 @@ void addScore(int quizId, string userName, int score) {
     }
 }
 
-bool alreadyPlayed(int quizId, string userName) {
+int alreadyPlayed(int quizId, string userName) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -338,7 +338,7 @@ bool alreadyPlayed(int quizId, string userName) {
         else
             return false;
 
-       
+
     }
     catch (sql::SQLException& e) {
         cout << "Error : " << e.what() << endl;
@@ -356,7 +356,7 @@ void updateScore(int quizId, string userName, int score) {
         string query = "UPDATE progresstracker set score = ? WHERE quizId = ? AND  userName = ?";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
 
-        pstmt->setInt(1,score);
+        pstmt->setInt(1, score);
         pstmt->setInt(2, quizId);
         pstmt->setString(3, userName);
         pstmt->execute();
