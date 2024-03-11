@@ -12,15 +12,15 @@ void User::playQuiz()
 	int count = 0 , quizId;
 	string table = "question";
 	
-	
+	DataBase db;
 	// Print quiz data
 	Quiz q;
-	showAllQuiz();
+	db.showAllQuiz();
 	cout << "\nChoose ID of Quiz you want to Play : ";
 	cin >> quizId;
 	vector<vector<string>>  quiz = q.getQuiz(quizId);
 
-	int questionCount = totalQuestion(table, quizId);
+	int questionCount = db.totalQuestion(table, quizId);
 
 	cout <<"\n\t--------[This Quiz Has " << questionCount << " Questions]--------\n";
 	int i = 0;
@@ -56,9 +56,9 @@ void User::setUser(string userName, string password) {
 void User:: Progress() {
 	int quizId;
 	ProgressTracker progress;
+	DataBase db;
 
-
-	showAllQuiz();
+	db.showAllQuiz();
 	cout << "\n Choose ID of Quiz you want to check score of : ";
 	cin >> quizId;
 	//cout << "\nthis is user : " << this->userName <<endl;

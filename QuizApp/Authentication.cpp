@@ -5,6 +5,7 @@
 using namespace std;
 
 void Authentication ::  Register(int choice) {
+	DataBase obj;
 	if (choice == 1) {  
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
@@ -12,7 +13,8 @@ void Authentication ::  Register(int choice) {
 		cin >> arr[1];
 
 		arr[2] = "user";
-		addToDB(arr);
+		
+		obj.addToDB(arr);
 	}
 	else {
 		cout << "\nEnter admin username :" << endl;
@@ -22,10 +24,11 @@ void Authentication ::  Register(int choice) {
 		cin >> arr[1];
 
 		arr[2] = "admin";
-		addToDB(arr);
+		obj.addToDB(arr);
 	}
 }
 void Authentication :: Login(int choice) {
+	DataBase obj;
 	if (choice == 1) {  
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
@@ -34,7 +37,9 @@ void Authentication :: Login(int choice) {
 		cin >> arr[1];
 
 		arr[2] = "user";
-		if (getFromDB(arr)) {
+		
+		
+		if (obj.getFromDB(arr)) {
 			cout << "\n~~~~~~~~~~~~~~~~ Welcome "<< arr[0]<< " ~~~~~~~~~~~~~~~~\n";
 			User obj;
 			
@@ -65,7 +70,7 @@ void Authentication :: Login(int choice) {
 		cin >> arr[1];
 
 		arr[2] = "admin";
-		if (getFromDB(arr)) {
+		if (obj.getFromDB(arr)) {
 			cout << "\n~~~~~~~~~~~~~~~~ Welcome Admin ~~~~~~~~~~~~~~~~\n";
 			QuizAdmin obj;
 			obj.addQuiz();

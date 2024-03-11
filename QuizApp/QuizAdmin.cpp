@@ -15,6 +15,7 @@ void QuizAdmin :: getAdmin() {
 }
 
 void QuizAdmin:: addQuiz() {
+	DataBase db;
 	Quiz quiz;
 
 	int choice;
@@ -25,7 +26,7 @@ void QuizAdmin:: addQuiz() {
 	if( choice == 1)
 		quiz.setQuiz();
 	else if (choice == 2) {
-		showAllQuiz();
+		db.showAllQuiz();
 		cout << " \nEnter quizId you want to select :";
 		int quizId; 
 		cin >> quizId;

@@ -1,25 +1,8 @@
 
 #include"mySqlConnection.h"
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/prepared_statement.h>
-using namespace std;
 
-const string server = "localhost:3306";
-const string username = "root";
-const string password = "Adarsh@123";
-
-class DBcon {
-    DBcon() {
-
-    }
-};
-
-void addToDB(string arr[]) {
+void DataBase:: addToDB(string arr[]) {
     try {
-        sql::Driver* driver = get_driver_instance();
-        sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
 
         string query = "INSERT INTO " + arr[2] + "(name, password) VALUES(?, ?)";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
@@ -37,7 +20,7 @@ void addToDB(string arr[]) {
         exit(1);
     }
 }
-bool getFromDB(string arr[]) {
+bool DataBase:: getFromDB(string arr[]) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -64,7 +47,7 @@ bool getFromDB(string arr[]) {
 
         delete result;
         delete pstmt;
-        delete con;
+        
         return true;
     }
     catch (sql::SQLException& e) {
@@ -72,7 +55,7 @@ bool getFromDB(string arr[]) {
         system("pause");
     }
 }
-void addQuiz(pair<int, string> pair) {
+void DataBase::addQuiz(pair<int, string> pair) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -99,7 +82,7 @@ void addQuiz(pair<int, string> pair) {
     }
 }
 
-int totalQuiz(string table) {
+int  DataBase::totalQuiz(string table) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -124,7 +107,7 @@ int totalQuiz(string table) {
         exit(1);
     }
 }
-void showAllQuiz() {
+void  DataBase:: showAllQuiz() {
     vector <pair <int, string>> quiz;
     try {
 
@@ -155,7 +138,7 @@ void showAllQuiz() {
     }
 }
 
-vector<vector<string>> getQuizDB(int quizId) {
+vector<vector<string>> DataBase::getQuizDB(int quizId) {
     vector<vector<string>> quizData;
 
     try {
@@ -195,7 +178,7 @@ vector<vector<string>> getQuizDB(int quizId) {
 
     return quizData;
 }
-int totalQuestion(string table, int quizId) {
+int DataBase::totalQuestion(string table, int quizId) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -222,7 +205,7 @@ int totalQuestion(string table, int quizId) {
         exit(1);
     }
 }
-void getProgress(int quizId, string userName) {
+void  DataBase::getProgress(int quizId, string userName) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -257,7 +240,7 @@ void getProgress(int quizId, string userName) {
     }
 }
 
-void addQuesion(pair<int, vector<string>> pair) {
+void DataBase::addQuesion(pair<int, vector<string>> pair) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -287,7 +270,7 @@ void addQuesion(pair<int, vector<string>> pair) {
     }
 }
 
-void addScore(int quizId, string userName, int score) {
+void DataBase:: addScore(int quizId, string userName, int score) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -313,7 +296,7 @@ void addScore(int quizId, string userName, int score) {
     }
 }
 
-int alreadyPlayed(int quizId, string userName) {
+int  DataBase::alreadyPlayed(int quizId, string userName) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
@@ -347,7 +330,7 @@ int alreadyPlayed(int quizId, string userName) {
     }
 }
 
-void updateScore(int quizId, string userName, int score) {
+void  DataBase::updateScore(int quizId, string userName, int score) {
     try {
         sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);

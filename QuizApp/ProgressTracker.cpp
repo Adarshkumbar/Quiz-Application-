@@ -2,15 +2,17 @@
 #include"ProgressTracker.h"
 #include"mySqlConnection.h"
 void  ProgressTracker :: getScore(int quizId, string userName) {
-	getProgress(quizId , userName);
+	DataBaseobj;
+	obj.getProgress(quizId , userName);
 }
 
 void ProgressTracker::setScore(int quizId, string userName, int score) {
-	if (alreadyPlayed(quizId, userName)== 1){
-		updateScore(quizId, userName,score);
+	DataBase obj;
+	if (obj.alreadyPlayed(quizId, userName)== 1){
+		obj.updateScore(quizId, userName,score);
 	}
-	else if(alreadyPlayed(quizId, userName) == 2) {
-		addScore(quizId, userName, score);
+	else if(obj.alreadyPlayed(quizId, userName) == 2) {
+		obj.addScore(quizId, userName, score);
 	}
 	else {
 		cout << "\n------ You have not played this Quiz yet ------\n";

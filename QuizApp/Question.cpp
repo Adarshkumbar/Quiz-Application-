@@ -3,7 +3,7 @@
 #include<iostream>
 #include"mySqlConnection.h"
 void Question::createQuestion(int quizId) {
-
+    DataBase db;
     pair<int, vector<string>> Pair;
     Pair.second.resize(6); // Initialize vector size
 
@@ -44,5 +44,5 @@ void Question::createQuestion(int quizId) {
 
     //cout << "\nDone from Question Class\n";
 
-    addQuesion(Pair);
+    db.addQuesion(Pair);
 }

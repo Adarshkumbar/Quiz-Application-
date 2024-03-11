@@ -24,7 +24,8 @@ void Menu() {
 			}
 			else {
 				cout << "\ninvalid entry \n";
-				goto x1;
+				system("CLS");
+				goto x1;				
 			}
 			break;
 		}

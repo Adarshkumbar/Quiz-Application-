@@ -7,17 +7,18 @@
 using namespace std;
 
 void Quiz :: setQuiz() {
+	DataBase db;
 	pair < int, string> pair;
 	// getting quiz id from quizManagement table
 	string table = "quizManagement";
-	this->quizId = totalQuiz(table) + 1;
+	this->quizId = db.totalQuiz(table) + 1;
 	pair.first = quizId;
 
 	cout << "\nEnter quiz title ";
 	cin >> this->title;
 	pair.second = title;
 
-	addQuiz(pair);
+	db.addQuiz(pair);
 }
 void Quiz::storeQuestions(int quizId) {
 	Question q;
@@ -26,9 +27,9 @@ void Quiz::storeQuestions(int quizId) {
 vector<vector<string>>  Quiz::getQuiz(int quizId) {
 
 	// getting quiz and questions for it
-	
+	DataBase db;
 
-	vector<vector<string>> quiz = getQuizDB(quizId);
+	vector<vector<string>> quiz = db.getQuizDB(quizId);
 
 	return quiz;
 }
