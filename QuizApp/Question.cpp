@@ -1,7 +1,7 @@
 
 #include "Question.h"
 #include<iostream>
-#include"mySqlConnection.h"
+#include"Database.h"
 void Question::createQuestion(int quizId) {
     DataBase db;
     pair<int, vector<string>> Pair;

@@ -1,9 +1,11 @@
 
 #include"ProgressTracker.h"
-#include"mySqlConnection.h"
+#include"Database.h"
+
 void  ProgressTracker :: getScore(int quizId, string userName) {
-	DataBaseobj;
+	DataBase obj;
 	obj.getProgress(quizId , userName);
+	return;
 }
 
 void ProgressTracker::setScore(int quizId, string userName, int score) {

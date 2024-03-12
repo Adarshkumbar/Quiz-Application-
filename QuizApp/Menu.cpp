@@ -10,6 +10,7 @@ void Menu() {
 		switch (choice)
 		{
 		case 1: {
+			system("CLS");
 			cout << "\nFor User \n";
 			int loginOrRegister;
 		x1: cout << "\n Do you want to Register (1) or Login(2) :";
@@ -24,13 +25,13 @@ void Menu() {
 			}
 			else {
 				cout << "\ninvalid entry \n";
-				system("CLS");
 				goto x1;				
 			}
 			break;
 		}
 		case 2: {
 			// play or track progress
+			system("CLS");
 			cout << "\nFor QuizAdmin \n";
 			int loginOrRegister;
 		x2: cout << "\n Do you want to Register (1) or Login(2) :";
@@ -50,11 +51,13 @@ void Menu() {
 			break;
 		}
 		case 3: {
+			system("CLS");
 			cout << "\n******\tExiting...\t******";
 			exit(0);
 		}
 		default:
-			cout << " Invalid Entry";
+			system("CLS");
+			cout << " Invalid Entry ....\n Try Again";
 			break;
 		}
 	} while (1);

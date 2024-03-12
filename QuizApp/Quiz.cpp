@@ -1,10 +1,5 @@
 #pragma once
-#include<iostream>
-#include <string>
-#include"Question.h"
 #include"Quiz.h"
-#include "mySqlConnection.h"
-using namespace std;
 
 void Quiz :: setQuiz() {
 	DataBase db;

@@ -18,7 +18,7 @@
     <ClCompile Include="QuizMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mySqlConnection.cpp">
+    <ClCompile Include="Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
@@ -47,7 +47,7 @@
     <ClInclude Include="Authentication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mySqlConnection.h">
+    <ClInclude Include="Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProgressTracker.h">

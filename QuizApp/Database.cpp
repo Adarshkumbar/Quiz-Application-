@@ -1,18 +1,16 @@
 
-#include"mySqlConnection.h"
+#include"Database.h"
 
 void DataBase:: addToDB(string arr[]) {
     try {
-
         string query = "INSERT INTO " + arr[2] + "(name, password) VALUES(?, ?)";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
         pstmt->setString(1, arr[0]);
         pstmt->setString(2, arr[1]);
         pstmt->execute();
 
-
         delete pstmt;
-        delete con;
+        cout << "\n~~~~~ Registered Successfully ~~~~~\n";
     }
     catch (sql::SQLException& e) {
         cout << "Error inserting data: " << e.what() << endl;
@@ -22,9 +20,9 @@ void DataBase:: addToDB(string arr[]) {
 }
 bool DataBase:: getFromDB(string arr[]) {
     try {
-        sql::Driver* driver = get_driver_instance();
+       /* sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
         string query = "SELECT COUNT(*) FROM " + arr[2] + " WHERE name = ? AND password = ?";
@@ -57,9 +55,9 @@ bool DataBase:: getFromDB(string arr[]) {
 }
 void DataBase::addQuiz(pair<int, string> pair) {
     try {
-        sql::Driver* driver = get_driver_instance();
+        /*sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
 
@@ -73,7 +71,7 @@ void DataBase::addQuiz(pair<int, string> pair) {
         cout << "Data inserted into " << "Quiz Management" << " table." << endl;
 
         delete pstmt;
-        delete con;
+      //  delete con;
     }
     catch (sql::SQLException& e) {
         cout << "Error inserting data: " << e.what() << endl;
@@ -84,9 +82,9 @@ void DataBase::addQuiz(pair<int, string> pair) {
 
 int  DataBase::totalQuiz(string table) {
     try {
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
         string query = "SELECT COUNT(*) FROM " + table;
@@ -97,7 +95,7 @@ int  DataBase::totalQuiz(string table) {
         int quizCount = result->getInt(1);
 
         delete pstmt;
-        delete con;
+        //delete con;
 
         return  quizCount;
     }
@@ -111,9 +109,9 @@ void  DataBase:: showAllQuiz() {
     vector <pair <int, string>> quiz;
     try {
 
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
         string query = "SELECT * FROM QuizManagement";
@@ -130,7 +128,7 @@ void  DataBase:: showAllQuiz() {
 
         delete result;
         delete pstmt;
-        delete con;
+       // delete con;
     }
     catch (sql::SQLException& e) {
         cout << "Error checking data: " << e.what() << endl;
@@ -142,9 +140,9 @@ vector<vector<string>> DataBase::getQuizDB(int quizId) {
     vector<vector<string>> quizData;
 
     try {
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
         string query = "SELECT questionText, optionA, optionB, optionC, optionD, answer FROM Question WHERE quizId = ?";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
@@ -168,7 +166,7 @@ vector<vector<string>> DataBase::getQuizDB(int quizId) {
 
         delete result;
         delete pstmt;
-        delete con;
+        //delete con;
     }
     catch (sql::SQLException& e) {
         cout << "Error retrieving quiz data: " << e.what() << endl;
@@ -180,9 +178,9 @@ vector<vector<string>> DataBase::getQuizDB(int quizId) {
 }
 int DataBase::totalQuestion(string table, int quizId) {
     try {
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
         string query = "SELECT COUNT(*) FROM Question Where quizId = ?";
@@ -195,7 +193,7 @@ int DataBase::totalQuestion(string table, int quizId) {
         int quizCount = result->getInt(1);
 
         delete pstmt;
-        delete con;
+       // delete con;
 
         return  quizCount;
     }
@@ -207,9 +205,9 @@ int DataBase::totalQuestion(string table, int quizId) {
 }
 void  DataBase::getProgress(int quizId, string userName) {
     try {
-        sql::Driver* driver = get_driver_instance();
+     /*   sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
         string query = "SELECT * FROM ProgressTracker where quizId = ? and userName = ?";
@@ -224,13 +222,12 @@ void  DataBase::getProgress(int quizId, string userName) {
 
         string table = " table";
         // << " Score for " << result->getInt("quizID");
-        cout << "\nUser Name : " << result->getString("userName");
-        cout << " Score  " << result->getString("score") << " Out of " << totalQuestion(table, quizId);
-
-        //}
+        system("CLS");
+        cout << "\n[ User Name : " << result->getString("userName") <<" ]"<<endl;
+        cout << "****** Score  " << result->getString("score") << " Out of " << totalQuestion(table, quizId)<<" ******";
 
         delete pstmt;
-        delete con;
+       // delete con;
 
     }
     catch (sql::SQLException& e) {
@@ -242,9 +239,9 @@ void  DataBase::getProgress(int quizId, string userName) {
 
 void DataBase::addQuesion(pair<int, vector<string>> pair) {
     try {
-        sql::Driver* driver = get_driver_instance();
+        /*sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
 
 
@@ -261,7 +258,7 @@ void DataBase::addQuesion(pair<int, vector<string>> pair) {
         pstmt->execute();
 
         delete pstmt;
-        delete con;
+       // delete con;
     }
     catch (sql::SQLException& e) {
         cout << "Error inserting data: " << e.what() << endl;
@@ -272,9 +269,9 @@ void DataBase::addQuesion(pair<int, vector<string>> pair) {
 
 void DataBase:: addScore(int quizId, string userName, int score) {
     try {
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
         string query = "INSERT INTO progresstracker (quizId, userName , score) VALUES(?, ? , ? )";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
@@ -287,7 +284,7 @@ void DataBase:: addScore(int quizId, string userName, int score) {
 
 
         delete pstmt;
-        delete con;
+        //delete con;
     }
     catch (sql::SQLException& e) {
         cout << "Error inserting data: " << e.what() << endl;
@@ -298,9 +295,9 @@ void DataBase:: addScore(int quizId, string userName, int score) {
 
 int  DataBase::alreadyPlayed(int quizId, string userName) {
     try {
-        sql::Driver* driver = get_driver_instance();
+      /*  sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
         string query = "SELECT COUNT(*) FROM progressTracker where quizID = ? AND userName = ?";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
@@ -314,7 +311,7 @@ int  DataBase::alreadyPlayed(int quizId, string userName) {
         int count = result->getInt(1);
 
         delete pstmt;
-        delete con;
+       // delete con;
 
         if (count >= 1)
             return true;
@@ -332,9 +329,9 @@ int  DataBase::alreadyPlayed(int quizId, string userName) {
 
 void  DataBase::updateScore(int quizId, string userName, int score) {
     try {
-        sql::Driver* driver = get_driver_instance();
+    /*    sql::Driver* driver = get_driver_instance();
         sql::Connection* con = driver->connect(server, username, password);
-        con->setSchema("dummy");
+        con->setSchema("dummy");*/
 
         string query = "UPDATE progresstracker set score = ? WHERE quizId = ? AND  userName = ?";
         sql::PreparedStatement* pstmt = con->prepareStatement(query);
@@ -344,7 +341,7 @@ void  DataBase::updateScore(int quizId, string userName, int score) {
         pstmt->setString(3, userName);
         pstmt->execute();
         delete pstmt;
-        delete con;
+      //  delete con;
 
     }
     catch (sql::SQLException& e) {

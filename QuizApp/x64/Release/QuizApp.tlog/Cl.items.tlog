@@ -5,5 +5,5 @@ C:\QuizApplication\QuizApp\QuizApp\Question.cpp;C:\QuizApplication\QuizApp\QuizA
 C:\QuizApplication\QuizApp\QuizApp\Quiz.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\Quiz.obj
 C:\QuizApplication\QuizApp\QuizApp\QuizAdmin.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\QuizAdmin.obj
 C:\QuizApplication\QuizApp\QuizApp\QuizMain.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\QuizMain.obj
-C:\QuizApplication\QuizApp\QuizApp\mySqlConnection.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\mySqlConnection.obj
+C:\QuizApplication\QuizApp\QuizApp\Database.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\Database.obj
 C:\QuizApplication\QuizApp\QuizApp\User.cpp;C:\QuizApplication\QuizApp\QuizApp\x64\Release\User.obj

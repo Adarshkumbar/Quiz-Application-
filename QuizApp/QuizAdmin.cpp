@@ -1,7 +1,7 @@
 #pragma once
 #include"Quiz.h"
 #include"QuizAdmin.h"
-
+#include"Database.h"
 QuizAdmin::QuizAdmin()
 {
 }

@@ -2,9 +2,9 @@
 #include"Menu.h"
 using namespace std;
 
-int main()   // 1 - user ...2 - admin
+int main()  
 {
+	system("CLS");
 	Menu();
-	
-	return 0;
+
 }

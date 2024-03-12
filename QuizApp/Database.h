@@ -2,7 +2,7 @@
 #ifndef MYSQLCONNECTION_H
 #define MYSQLCONNECTION_H
 
-#include"mySqlConnection.h"
+#include"Database.h"
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
 #include <cppconn/prepared_statement.h>
@@ -18,12 +18,21 @@ private :
 	const string server = "localhost:3306";
 	const string username = "root";
 	const string password = "Adarsh@123";
-	sql::Driver* driver = get_driver_instance();
-	sql::Connection* con = driver->connect(server, username, password);
-
+	 
 public:
+	sql::Driver* driver;
+	sql::Connection* con;
 	DataBase() {
-		con->setSchema("dummy");
+		try {
+			driver = get_driver_instance();
+			con = driver->connect(server, username, password);
+
+			con->setSchema("dummy");
+		}
+		catch (exception e) {
+			cout << "\nError Connecting to DB " << e.what()<<endl;
+		}
+		
 	}
 	~DataBase() {
 		delete con;

@@ -1,6 +1,6 @@
 
 #include "User.h"
-#include "mySqlConnection.h"
+#include "Database.h"
 #include "ProgressTracker.h"
 #include "Quiz.h"
 void User::getUser() {
@@ -14,6 +14,8 @@ void User::playQuiz()
 	
 	DataBase db;
 	// Print quiz data
+play:
+	count = 0;
 	Quiz q;
 	db.showAllQuiz();
 	cout << "\nChoose ID of Quiz you want to Play : ";
@@ -46,6 +48,21 @@ void User::playQuiz()
 	progress.calculatePercentage(count, questionCount);
 
 	cout << "\n ********************** Thank you for playing **********************\n";
+	int choice;
+	cout << "\n Play Quiz Again? \n1: Yes \t2: No \n:";
+	cin >> choice;
+
+	if (choice == 1) {
+		system("CLs");
+		goto play;
+	}
+	else if (choice == 2) {
+		return;
+	}
+	else {
+		system("CLS");
+		cout << "__ Invalid Entry__"<<endl;
+	}
 }
 
 void User::setUser(string userName, string password) {
@@ -58,9 +75,21 @@ void User:: Progress() {
 	ProgressTracker progress;
 	DataBase db;
 
+	system("CLS");
+
+	beg:
+	cout << "********* Available Quizes *********"<< endl;
 	db.showAllQuiz();
 	cout << "\n Choose ID of Quiz you want to check score of : ";
 	cin >> quizId;
 	//cout << "\nthis is user : " << this->userName <<endl;
-	progress.getScore(quizId , userName);
+	string table ="quizManagement";
+	if (quizId > db.totalQuiz(table)) {
+		system("CLS");
+		cout << "__ Invalid Entry __"<<"You Enterd :"<<quizId<<"\n";
+		goto beg;
+	}
+	else {
+		progress.getScore(quizId, userName);
+	}	
 }

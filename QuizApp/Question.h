@@ -21,4 +21,3 @@ public:
 //	void getQuestion(int quizId) ;
 };
 #endif
-

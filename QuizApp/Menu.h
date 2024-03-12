@@ -3,7 +3,8 @@
 #include <iostream>
 #include "Authentication.h"
 #include "User.h"
-#include "mySqlConnection.h"
+#include "Database.h"
 using namespace std;
 
 void Menu();
+

@@ -1,11 +1,15 @@
 #include <string>
-#include "mySqlConnection.h"
+#include "Database.h"
 #include "Authentication.h"
 
+#include<iostream>
+#include"User.h"
+#include "QuizAdmin.h"
 using namespace std;
 
 void Authentication ::  Register(int choice) {
 	DataBase obj;
+	system("CLS");
 	if (choice == 1) {  
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
@@ -29,7 +33,9 @@ void Authentication ::  Register(int choice) {
 }
 void Authentication :: Login(int choice) {
 	DataBase obj;
-	if (choice == 1) {  
+	system("CLS");
+	if (choice == 1) { 
+	beg:
 		cout << "\nEnter username :" << endl;
 		cin >> arr[0];
 	
@@ -40,12 +46,14 @@ void Authentication :: Login(int choice) {
 		
 		
 		if (obj.getFromDB(arr)) {
+			system("CLS");
 			cout << "\n~~~~~~~~~~~~~~~~ Welcome "<< arr[0]<< " ~~~~~~~~~~~~~~~~\n";
+		
 			User obj;
 			
 			obj.setUser(arr[0] ,arr[1]);
 
-
+			options:
 			int choice;
 			cout << "\n1: Play Quiz \n2: Progress :";
 			cin >> choice;
@@ -55,11 +63,15 @@ void Authentication :: Login(int choice) {
 			else if (choice == 2)
 				obj.Progress();
 			else {
-				return;
+				system("CLS");
+				cout << "\n!!!! Invalid Entry !!!!";
+				goto options;
 			}
 		}
 		else {
-			cout << "\n\n\n\n Xoxox\n\n\n";
+			system("CLS");
+			cout << "\n!!! Invalid Entry !!!\n";
+			goto beg;
 		}
 	}
 	else {					
@@ -76,7 +88,7 @@ void Authentication :: Login(int choice) {
 			obj.addQuiz();
 		}
 		else {
-			cout << "\n\n\n\n Xoxox\n\n\n";
+			cout << "\n Invalid Entry\n";
 		}
 	}
 }
