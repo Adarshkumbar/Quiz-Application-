@@ -1,7 +1,9 @@
 
 #include"ProgressTracker.h"
 #include"Database.h"
-
+#include<iostream>
+#include <string>
+using namespace std;
 void  ProgressTracker :: getScore(int quizId, string userName) {
 	DataBase obj;
 	obj.getProgress(quizId , userName);
